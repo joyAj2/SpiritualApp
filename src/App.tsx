@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
-import { HomePage, AboutPage, LoginPage, SignupPage } from './pages'
+import { HomePage, AboutPage, SignInPage, SignupPage } from './pages'
 import AuthProvider, { useAuth } from './auth/AuthContext'
 
 const Protected: React.FC<{ children: React.ReactElement }> = ({ children }) => {
@@ -26,7 +26,7 @@ const Layout: React.FC = () => {
           <div className="ml-auto flex items-center gap-2">
             {!user && (
               <>
-                <NavLink to="/login" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Login</NavLink>
+                <NavLink to="/login" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign In</NavLink>
                 <NavLink to="/signup" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign Up</NavLink>
               </>
             )}
@@ -43,13 +43,13 @@ const Layout: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<SignInPage />} />
             <Route path="/signup" element={<SignupPage />} />
           <Route path="/dashboard" element={<Protected><div className='container mx-auto px-4 py-8'><h1 className='text-2xl font-bold mb-4'>Dashboard (Protected)</h1><p className='text-gray-600'>Only visible when logged in.</p></div></Protected>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
-      <footer className="py-6 text-center text-xs text-gray-500">© {new Date().getFullYear()} NOM-FE</footer>
+  {/** Footer removed per request **/}
     </div>
   )
 }
