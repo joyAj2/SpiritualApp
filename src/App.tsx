@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
-import { HomePage, AboutPage, SignInPage, SignupPage } from './pages'
+import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
+import { Section1Page, AboutPage, SignInPage, SignupPage } from './pages'
 import AuthProvider, { useAuth } from './auth/AuthContext'
 
 const Protected: React.FC<{ children: React.ReactElement }> = ({ children }) => {
@@ -11,37 +11,41 @@ const Protected: React.FC<{ children: React.ReactElement }> = ({ children }) => 
 }
 
 const Layout: React.FC = () => {
+  const location = useLocation()
+  const isAuthRoute = location.pathname === '/signup'
   const { user, logout } = useAuth()
   const linkBase = 'px-3 py-2 rounded hover:bg-gray-200 text-sm font-medium'
   const active = 'bg-gray-300'
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white shadow">
-        <nav className="container mx-auto flex items-center gap-4 px-4 h-14">
-          <NavLink to="/" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Home</NavLink>
-          <NavLink to="/about" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>About</NavLink>
-          {user && (
-            <NavLink to="/dashboard" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Dashboard</NavLink>
-          )}
-          <div className="ml-auto flex items-center gap-2">
-            {!user && (
-              <>
-                <NavLink to="/login" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign In</NavLink>
-                <NavLink to="/signup" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign Up</NavLink>
-              </>
-            )}
+      {!isAuthRoute && (
+        <header className="bg-white shadow">
+          <nav className="container mx-auto flex items-center gap-4 px-4 h-14">
+            <NavLink to="/" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Section1</NavLink>
+            <NavLink to="/about" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>About</NavLink>
             {user && (
-              <>
-                <span className="text-sm text-gray-600">{user.email}</span>
-                <button onClick={logout} className="text-sm text-red-600 font-medium px-3 py-2 rounded hover:bg-red-50">Logout</button>
-              </>
+              <NavLink to="/dashboard" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Dashboard</NavLink>
             )}
-          </div>
-        </nav>
-      </header>
+            <div className="ml-auto flex items-center gap-2">
+              {!user && (
+                <>
+                  <NavLink to="/login" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign In</NavLink>
+                  <NavLink to="/signup" className={({isActive}) => `${linkBase} ${isActive ? active : ''}`}>Sign Up</NavLink>
+                </>
+              )}
+              {user && (
+                <>
+                  <span className="text-sm text-gray-600">{user.email}</span>
+                  <button onClick={logout} className="text-sm text-red-600 font-medium px-3 py-2 rounded hover:bg-red-50">Logout</button>
+                </>
+              )}
+            </div>
+          </nav>
+        </header>
+      )}
       <main className="flex-1">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Section1Page />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<SignInPage />} />
             <Route path="/signup" element={<SignupPage />} />

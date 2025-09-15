@@ -30,7 +30,7 @@ const SignInPage: React.FC = () => {
   }
 
   return (
-    <div className="px-3 md:px-12 xl:px-20 py-4 min-h-[calc(100vh-3.5rem)] flex flex-col">
+  <div className="px-3 md:px-12 xl:px-20 py-4 min-h-[calc(100vh-3.5rem)] flex flex-col">
       <div className="max-w-[1250px] w-full mx-auto grid gap-0 md:gap-14 md:grid-cols-[567px_1fr] items-start flex-1">
         {/* Image section */}
         <div className="relative flex flex-col items-center md:items-start text-center md:text-left md:pt-[61px]">
@@ -122,10 +122,10 @@ const SignInPage: React.FC = () => {
               </div>
 
               <p className="mt-4 md:mt-6 w-full font-poppins text-[16px] font-medium leading-none text-gray-700 text-center">
-                <span className="text-gray-600 font-normal">Don't have an account? </span>
+                <span className="font-poppins text-[16px] font-medium leading-none text-gray-400">Don't have an account? </span>
                 <Link
                   to="/signup"
-                  className="text-[#14A58B] font-medium hover:underline"
+                  className="text-[#14A58B] font-medium underline"
                 >
                   Sign up
                 </Link>
