@@ -8,3 +8,13 @@ body {
 .font-inter {
   font-family: 'Inter', sans-serif;
 }
+/* Custom styles for checkboxes and radios */
+@layer components {
+  .input-check {
+    @apply w-4 h-4 text-primary border-2 border-primary rounded focus:ring-primary focus:ring-2;
+  }
+
+  .input-radio {
+    @apply w-4 h-4 text-primary border-2 border-primary focus:ring-primary focus:ring-2;
+  }
+}

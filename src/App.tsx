@@ -97,13 +97,24 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
-      <main className="h-full w-full">{renderSection()}</main>
-      <BottomNavigation
-        currentSection={currentSection}
-        onSectionChange={handleSectionChange}
-      />
-    </div>
+    // <div className="h-screen w-screen overflow-hidden">
+    //   <main className="h-full w-full">{renderSection()}</main>
+    //   <BottomNavigation
+    //     currentSection={currentSection}
+    //     onSectionChange={handleSectionChange}
+    //   />
+    // </div>
+  <div className="min-h-screen w-screen flex flex-col">
+  <main className="flex-1 overflow-y-auto">
+    {renderSection()}
+  </main>
+  <BottomNavigation
+    currentSection={currentSection}
+    onSectionChange={handleSectionChange}
+  />
+</div>
+
+
   );
 }
 
