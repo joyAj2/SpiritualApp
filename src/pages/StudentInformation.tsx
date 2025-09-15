@@ -55,32 +55,36 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
     };
 
   return (
-    <div className='w-screen min-h-screen bg-white'>
+    <div className='w-full min-h-screen bg-white overflow-x-hidden'>
         <div className='flex justify-end p-4'>
             <img src={Logo} alt='Logo' className='w-24 h-20'/>
         </div>
-        <div className='lg:flex-row flex flex-col-reverse justify-center items-center mb-20'>
-            <form className='w-full max-w-lg px-8 md:px-10 lg:px-10 flex flex-col justify-center' onSubmit={handleSubmit}>
-                <div className='flex justify-start items-center gap-3 mb-7 lg:-ml-14'>
-                    <span className='flex justify-start items-center'>
+        <div className='lg:flex-row flex flex-col-reverse justify-center items-center mb-20 w-full'>
+            <form className='grid grid-cols-[auto_1fr] w-full max-w-2xl lg:p-8 lg:pl-32' onSubmit={handleSubmit}>
+                <div className='w-10'>
+                    <span className='w-full'>
                         <img src={hugeIcon_1} alt='hugeIcon_1' className='w-10 h-10'/>
                     </span>
-                    <p className='text-xl md:text-2xl font-bold'>Basic Student Information</p>
                 </div>
+                <div className='w-full max-w-lg px-2 flex flex-col justify-center'>
+                    <span className='flex justify-start items-center gap-3 mb-7'>
+                        <p className='text-xl md:text-2xl font-bold mt-1'>Basic Student Information</p>
+                    </span>
                 <div className='flex flex-col gap-6'>
                     <div className='flex flex-col gap-3'>
                         <label className='text-lg md:text-[20px] font-semibold'>Full Name</label>
-                        <input 
-                          type='text'
-                          placeholder='Enter your name' 
-                          required  
-                          className='border-b-2 w-full border-b-[#00B69D] font-bold py-2' 
-                          value={fullName}
-                          onChange={e => {
-                            setFullName(e.target.value);
-                            setStudentInfo(prev => ({ ...prev, fullName: e.target.value }));
-                          }}
-                        />
+                        <input
+                            type="text"
+                            placeholder="Enter your name"
+                            required
+                            className="border-b-2 w-full border-b-[#00B69D] font-bold py-2 
+                                        focus:outline-none focus:border-b-[#054d43]"
+                            value={fullName}
+                            onChange={e => {
+                                setFullName(e.target.value);
+                                setStudentInfo(prev => ({ ...prev, fullName: e.target.value }));
+                            }}
+                            />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <label className='text-lg md:text-[20px] font-semibold'>Date of birth</label>
@@ -91,7 +95,7 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                                 required
                                 value={day}
                                 onChange={(e) => setDay(e.target.value)}
-                                className={`w-1/4 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 ${
+                                className={`w-1/4 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 focus:outline-none focus:border-b-[#054d43] ${
                                 day === "" ? "text-gray-400" : "text-black"
                                 }`}
                             >
@@ -110,7 +114,7 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                                 required
                                 value={month}
                                 onChange={(e) => setMonth(e.target.value)}
-                                className={`w-1/4 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 ${
+                                className={`w-1/4 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 focus:outline-none focus:border-b-[#054d43] ${
                                 month === "" ? "text-gray-400" : "text-black"
                                 }`}
                             >
@@ -129,7 +133,7 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                                 required
                                 value={year}
                                 onChange={(e) => setYear(e.target.value)}
-                                className={`w-1/3 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 ${
+                                className={`w-1/4 min-w-[90px] border-b-2 border-b-[#00B69D] font-bold outline-none bg-white py-2 focus:outline-none focus:border-b-[#054d43] ${
                                 year === "" ? "text-gray-400" : "text-black"
                                 }`}
                             >
@@ -172,28 +176,30 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                     </div>
                     <div className='flex flex-col'>
                         <label htmlFor='school' className='font-semibold text-lg md:text-[20px]'>School Name</label>
-                        <span className='flex justify-start items-center border-b-2 w-full border-b-[#00B69D] gap-3'>
-                            <select 
-                              id='school' 
-                              name='school' 
-                              required 
-                              value={selectedSchool} 
-                              onChange={(e) => {
-                                setSelectedSchool(e.target.value);
-                                setStudentInfo(prev => ({ ...prev, school: e.target.value }));
-                              }}  
-                              className={`w-full font-bold bg-white py-2 ${selectedSchool === "" ? "text-gray-400" : "text-black"} `}
-                            >
-                                <option value="" disabled  className='text-gray-400'>Select School</option>
+                        <span className='flex justify-start items-center border-b-2 w-full  gap-3'>
+                            <select
+                                id="school"
+                                name="school"
+                                required
+                                value={selectedSchool}
+                                onChange={(e) => {
+                                    setSelectedSchool(e.target.value);
+                                    setStudentInfo(prev => ({ ...prev, school: e.target.value }));
+                                }}
+                                className={`w-full font-bold bg-white py-2 border-b-2 border-b-[#00B69D] 
+                                            focus:outline-none focus:border-b-[#054d43] 
+                                            ${selectedSchool === "" ? "text-gray-400" : "text-black"}`}
+                                >
+                                <option value="" disabled className="text-gray-400">Select School</option>
                                 <option value="School1">School1</option>
                                 <option value="School2">School2</option>
                                 <option value="School3">School3</option>
-                            </select>
+                                </select>
                         </span>
                     </div>
                     <div className='flex flex-col'>
                         <label htmlFor='class' className='font-semibold text-lg md:text-[20px]'>Class/Form</label>
-                        <span className='flex justify-start items-center border-b-2 w-48 md:w-2/3 border-b-[#00B69D] gap-3'>
+                        <span className='flex justify-start items-center border-b-2 w-48 md:w-2/3 gap-3'>
                             <select 
                               id='class' 
                               name='class' 
@@ -203,7 +209,7 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                                 setSelectedClass(e.target.value);
                                 setStudentInfo(prev => ({ ...prev, classForm: e.target.value }));
                               }}  
-                              className={`w-48 font-bold bg-white py-2 ${selectedClass === "" ? "text-gray-400" : "text-black"} `}
+                              className={`w-48 lg:w-72 md:w-72 font-bold bg-white py-2 border-b-2 border-b-[#00B69D] focus:outline-none focus:border-b-[#054d43] ${selectedClass === "" ? "text-gray-400" : "text-black"} `}
                             >
                                 <option value="" disabled  className='text-gray-400'>Select class/form</option>
                                 <option value="JSS1">JHS1</option>
@@ -218,16 +224,17 @@ function StudentInformation({ setStudentInfo }: StudentInformationProps) {
                           className='bg-[#1A434C] text-white font-bold w-32 md:w-[150px] h-[50px] rounded-lg mt-4 flex justify-center items-center'
                         >
                            <p>CONTINUE </p>
-                            <img src={continueIcon} alt='continueIcon' className='inline w-5 h-7 ml-2'/>
+                            <img src={continueIcon} alt='continueIcon' className='inline w-4 h-4 ml-2'/>
                         </button>
                     </div>
                 </div>
+                </div>
             </form>
-            <div className='flex justify-center items-center w-full lg:w-[500px] lg:h-[500px] mb-8 lg:mb-0 lg:pl-32'>
-                <img src={studentTyping} alt='studentTyping' className='w-60 h-60 lg:w-[500px] lg:[500px] md:w-96 md:h-96 object-contain'/>
+            <div className='flex justify-center items-center w-full max-w-[550px] lg:h-[500px] mb-8 lg:mb-0 lg:pl-32 p-4'>
+                <img src={studentTyping} alt='studentTyping' className='w-60 h-60 lg:w-[550px] lg:h-[450px] md:w-96 md:h-96 object-contain'/>
             </div>
         </div>
-    </div>
+    </div> 
   )
 }
 

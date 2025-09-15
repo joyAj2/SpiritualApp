@@ -7,6 +7,9 @@ import contactIconWhite from '../assets/icons/hugeicons_contact-02 (1).png'
 import contactIcon from '../assets/icons/hugeicons_contact-02.png'
 import noteIcon from '../assets/icons/hugeicons_note-04 (1).png'
 import noteIconWhite from '../assets/icons/hugeicons_note-04 (2).png'
+import completedIcon from '../assets/icons/Line 25.png'
+import activeIcon from '../assets/icons/Line 29.png'
+import uncompletedIcon from '../assets/icons/Line 26.png'
 
 interface NavigationBarProps {
   className?: string;
@@ -58,34 +61,31 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ className, activePage }) 
       </div>
 
       {/* Mobile version */}
-      <div className='block md:hidden w-screen bg-white py-4 p-3 items-center'>
-        <div className="relative flex items-center justify-between px-2">
-          {pageOrder.map((page, idx) => (
-            <React.Fragment key={page.key}>
-              <div className="flex flex-col items-center z-10">
-                <img
-                  src={activePage === page.key ? page.iconActive : page.icon}
-                  alt={`${page.key}Icon`}
-                  className={`w-7 h-7 ${activePage === page.key ? 'bg-[#08B298] rounded-xl p-1 shadow-md' : ''}`}
-                />
-                <div className={`mt-1 w-2 h-2 rounded-full ${activePage === page.key ? 'bg-[#08B298]' : 'bg-[#DAF3F1]'}`}></div>
-              </div>
-              {idx < pageOrder.length - 1 && (
-                <div className="flex-1 h-1 mx-1 relative">
-                  <div className="absolute top-1/2 left-0 w-full h-[4px] bg-[#DAF3F1] -translate-y-1/2 rounded"></div>
-                  {/* Progress fill */}
-                  {pageOrder.findIndex(p => p.key === activePage) > idx && (
-                    <div className="absolute top-1/2 left-0 h-[4px] bg-gradient-to-r from-[#00B69D] via-[#00B69D] to-[#00B69D] rounded"
-                      style={{ width: '100%', transform: 'translateY(-50%)' }}></div>
-                  )}
-                  {pageOrder.findIndex(p => p.key === activePage) === idx && (
-                    <div className="absolute top-1/2 left-0 h-[4px] bg-gradient-to-r from-[#00B69D] via-[#00B69D] to-[#00B69D] rounded"
-                      style={{ width: '50%', transform: 'translateY(-50%)' }}></div>
-                  )}
+      <div className='block md:hidden w-screen py-4 px-0 border-t-2 border-[#DAF3F1] bg-white'>
+        <div className="flex items-center justify-between w-full px-2 mb-3">
+          {pageOrder.map((page, idx) => {
+            const activeIdx = pageOrder.findIndex(p => p.key === activePage);
+            let iconSrc = uncompletedIcon;
+            if (idx < activeIdx) iconSrc = completedIcon;
+            if (idx === activeIdx) iconSrc = activeIcon;
+            return (
+              <React.Fragment key={page.key}>
+                <div className="flex flex-col items-center z-10">
+                  <img
+                    src={iconSrc}
+                    alt={`${page.key}ProgressIcon`}
+                    className="w-7 h-1 rounded-xl"
+                  />
                 </div>
-              )}
-            </React.Fragment>
-          ))}
+              </React.Fragment>
+            );
+          })}
+        </div>
+        <div className='relative h-[4px] w-full bg-[#DAF3F1] mt-2'>
+          <div
+            className='absolute top-0 left-0 h-[4px] bg-gradient-to-r from-[#00B69D] via-[#00B69D] to-[#00B69D] transition-all duration-300'
+            style={{ width: `${progress}%` }}
+          ></div>
         </div>
       </div>
     </nav>
