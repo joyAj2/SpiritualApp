@@ -1,7 +1,7 @@
 import React from 'react';
-import { ClipboardList, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import type { SpiritualResponse, UserProfile } from '../types';
-import BottomNavigation from './BottomNavigation'; // adjust the path if needed
+// import BottomNavigation from './BottomNavigation'; // adjust the path if needed
 
 
 
@@ -29,8 +29,8 @@ const Section4: React.FC<Section4Props> = ({ user, data, onChange, onContinue })
       : data.followUpMethod.filter(m => m !== method);
     onChange({ ...data, followUpMethod: newMethods });
   };
-  const [currentSection, setCurrentSection] = React.useState(4); // start at section 4
-
+  
+// const [currentSection, setCurrentSection] = React.useState(4); // start at section 4
 
   return (
     <div className="h-screen w-screen bg-gray-50 relative flex flex-col">
@@ -40,9 +40,9 @@ const Section4: React.FC<Section4Props> = ({ user, data, onChange, onContinue })
           {/* Header positioned slightly lower than the ellipse */}
           <div className="absolute top-12 left-9 z-10">
            <div className="flex items-center space-x-4 text-xs">
-  {[user.name, user.school, user.form, user.phone, user.email].map((item, index) => (
+  {[user.name, user.school, user.form, user.phone, user.email].map((item) => (
     <span
-      key={index}
+      key={item}
       className="relative"
       style={{ color: '#00B69D' }}
     >
@@ -184,12 +184,8 @@ const Section4: React.FC<Section4Props> = ({ user, data, onChange, onContinue })
                         />
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Continue Button */}
-              <div className="pt-4">
+                          {/* Continue Button */}
+              <div className="pt-7">
                 <button
                   onClick={onContinue}
                   className="bg-slate-700 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-slate-600 transition-colors duration-200 flex items-center group text-sm"
@@ -202,6 +198,9 @@ const Section4: React.FC<Section4Props> = ({ user, data, onChange, onContinue })
                 </button>
               </div>
             </div>
+                  </div>
+                </div>
+              </div>
 
             {/* Illustration */}
             <div className="relative flex items-center justify-center">
@@ -214,10 +213,10 @@ const Section4: React.FC<Section4Props> = ({ user, data, onChange, onContinue })
           </div>
         </div>
       </div>
-      <BottomNavigation
+      {/* <BottomNavigation
   currentSection={currentSection}
   onSectionChange={setCurrentSection}
-/>
+/> */}
 
     </div>
   );
