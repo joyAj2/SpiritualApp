@@ -43,11 +43,11 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
       </div>
       <div className="flex justify-center mt-2">
         <div className="flex space-x-1">
-          {navItems.map((_, index) => (
+          {navItems.map((_, item) => (
             <div
-              key={index}
+              key={item}
               className={`w-2 h-2 rounded-full transition-colors ${
-                currentSection === index + 1 ? 'bg-teal-500' : 'bg-gray-300'
+                currentSection === item + 1 ? 'bg-teal-500' : 'bg-gray-300'
               }`}
             />
           ))}

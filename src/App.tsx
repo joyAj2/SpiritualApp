@@ -1,31 +1,31 @@
-import { useState } from 'react';
-import BottomNavigation from './components/BottomNavigation';
-import Section4 from './components/SectionFour';
-import PlaceholderSection from './components/PlaceholderSection';
-import Section5 from './components/SectionFive';
-import Section6 from './components/SectionSix';
-import type { FormData, UserProfile, SpiritualResponse } from './types';
+import { useState } from "react";
+import BottomNavigation from "./components/BottomNavigation";
+import Section4 from "./components/SectionFour";
+import PlaceholderSection from "./components/PlaceholderSection";
+import Section5 from "./components/SectionFive";
+import Section6 from "./components/SectionSix";
+import type { FormData, UserProfile, SpiritualResponse } from "./types";
 
 function App() {
   const [currentSection, setCurrentSection] = useState<number>(4);
 
   const userProfile: UserProfile = {
-    name: 'Stacy Stark',
-    school: 'Achimota Sch',
-    form: 'Form 3',
-    phone: '+233 204787472',
-    email: 'stacy012stk@gmail.com',
-    initial: 'G',
+    name: "Stacy Stark",
+    school: "Achimota Sch",
+    form: "Form 3",
+    phone: "+233 204787472",
+    email: "stacy012stk@gmail.com",
+    initial: "G",
   };
 
   const [formData, setFormData] = useState<FormData>({
     currentSection: 4,
     spiritualResponse: {
       responses: [],
-      otherResponse: '',
-      followUp: '',
+      otherResponse: "",
+      followUp: "",
       followUpMethod: [],
-      otherFollowUpMethod: '',
+      otherFollowUpMethod: "",
     },
   });
 
@@ -80,42 +80,29 @@ function App() {
           />
         );
       case 5:
-        return (
-          <Section5
-            onContinue={handleContinue} // ✅ Correctly passed
-          />
-        );
+        return <Section5 onContinue={handleContinue} />;
       case 6:
         return (
           <Section6
             user={userProfile}
             spiritualData={formData.spiritualResponse}
             onSubmit={() => {
-              alert('Form submitted successfully! Thank you for your response.');
+              alert("Form submitted successfully! Thank you for your response.");
             }}
           />
         );
       default:
-        return (
-          <PlaceholderSection
-            sectionNumber={0}
-            title="Unknown Section"
-            onContinue={handleContinue}
-          />
-        );
+        return <div>Unknown section</div>; // ✅ safe fallback
     }
   };
 
   return (
     <div className="h-screen w-screen overflow-hidden">
-      {/* Full screen container with no scrolling */}
-      <main className="h-full w-full">
-        {renderSection()}
-      </main>
-      {/* <BottomNavigation
+      <main className="h-full w-full">{renderSection()}</main>
+      <BottomNavigation
         currentSection={currentSection}
         onSectionChange={handleSectionChange}
-      /> */}
+      />
     </div>
   );
 }
