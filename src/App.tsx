@@ -12,13 +12,6 @@ const Protected: React.FC<{ children: React.ReactElement }> = ({ children }) => 
   return children
 }
 
-const Layout: React.FC = () => {
-  const location = useLocation()
-  const isAuthRoute = location.pathname === '/signup' || location.pathname === '/login'
-  const isSection1 = location.pathname === '/'
-  const { user, logout } = useAuth()
-  const linkBase = 'px-3 py-2 rounded hover:bg-gray-200 text-sm font-medium'
-  const active = 'bg-gray-300'
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {!isAuthRoute && (

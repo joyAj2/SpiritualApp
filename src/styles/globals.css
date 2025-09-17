@@ -7,41 +7,14 @@
 
 @layer components {
   .btn-primary {
-    background-color: #3b82f6; /* bg-blue-500 */
-    color: #fff; /* text-white */
-    font-weight: 500; /* font-medium */
-    padding-top: 0.5rem; /* py-2 */
-    padding-bottom: 0.5rem;
-    padding-left: 1rem; /* px-4 */
-    padding-right: 1rem;
-    border-radius: 0.25rem; /* rounded */
-    transition-property: background-color; /* transition-colors */
-    transition-duration: 150ms;
-  }
-  .btn-primary:hover {
-    background-color: #2563eb; /* hover:bg-blue-600 */
+    @apply bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors;
   }
   
   .btn-secondary {
-    background-color: #e5e7eb; /* bg-gray-200 */
-    color: #1f2937; /* text-gray-800 */
-    font-weight: 500; /* font-medium */
-    padding-top: 0.5rem; /* py-2 */
-    padding-bottom: 0.5rem;
-    padding-left: 1rem; /* px-4 */
-    padding-right: 1rem;
-    border-radius: 0.25rem; /* rounded */
-    transition-property: background-color; /* transition-colors */
-    transition-duration: 150ms;
-  }
-  .btn-secondary:hover {
-    background-color: #d1d5db; /* hover:bg-gray-300 */
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition-colors;
   }
   
   .card {
-    background-color: #fff; /* bg-white */
-    border-radius: 0.5rem; /* rounded-lg */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* shadow-md */
-    padding: 1.5rem; /* p-6 */
+    @apply bg-white rounded-lg shadow-md p-6;
   }
 }
